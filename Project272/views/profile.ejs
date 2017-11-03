@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+   <form method="post" action="/payment">
+
+<table>
+<tr><th>
+Name
+</th><td>
+<span><%= user.firstname %></span>
+</td></tr>
+
+<tr>
+<th>Email</th>
+<td><span><%= user.email %></span></td>
+</tr>
+
+<tr align="left">
+<th>TRAIN</th></tr>
+
+<% for(var i=0; i<user.train.length; i++) {%>
+<tr >
+<td ><span><%= user.train[i].expertise_name %></span></td> </tr>
+<% } %>
+<tr>
+<td><select>
+ <% for(var i=0; i<expertiseList.length; i++) {%>
+ <option><%= expertiseList[i].expertise_name %></option>
+  <% } %>
+</select>
+</td>
+</tr>
+      
+ <tr align="left">
+<th>VOLUNTEER</th>
+</tr>
+<% for(var i=0; i<user.volunteer.length; i++) {%>
+<tr >
+<td >
+<span><%= user.volunteer[i].expertise_name %></span>
+</td>
+</tr>
+ <% } %>
+ <tr>
+<td><select>
+ <% for(var i=0; i<expertiseList.length; i++) {%>
+ <option><%= expertiseList[i].expertise_name %></option>
+  <% } %>
+</select>
+</td>
+</tr>
+      
+ <tr align="left">
+<th>
+LEARN
+</th>
+</tr>
+<% for(var i=0; i<user.learn.length; i++) {%>
+<tr >
+<td ><span><%= user.learn[i].expertise_name %></span>       </td>
+</tr>
+ <% } %>
+ <tr>
+<td><select>
+ <% for(var i=0; i<expertiseList.length; i++) {%>
+ <option><%= expertiseList[i].expertise_name %></option>
+  <% } %>
+</select>
+</td>
+</tr>
+      
+      
+
+<tr>
+<td>
+</td>
+</tr>
+</table>
+  </form>
+  <br>
+  </body>
+</html>
