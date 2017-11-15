@@ -9,7 +9,8 @@ var dbConfig = require('./db');
 var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
-
+var searchs = require('./routes/search');
+var tests = require('./routes/test');
 var app = express();
 
 // view engine setup
@@ -42,7 +43,8 @@ initPassport(passport);
 
 var routes = require('./routes/index')(passport);
 app.use('/', routes);
-
+app.use('/', searchs);
+app.use('/', tests);
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
