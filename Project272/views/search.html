@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>This is some text that will be shown always</h2>
+    <p>To make the tabs toggleable, add the data-toggle="pill" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
+    <ul class="nav nav-pills">
+        <!--<li class="active"><a data-toggle="pill" href="#home">Search Opportunities</a></li>-->
+        <li class="active"><a data-toggle="pill" href="#menu1">Find Events</a></li>
+        <li><a data-toggle="pill" href="#menu2">Fine a Trainer</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <!--<div id="home" class="tab-pane fade in active">-->
+            <!--<h3>This page is for searching opportunities.</h3>-->
+            <!--<p>Click the tabs above to choose if you wanna search for events or trainers.</p>-->
+        <!--</div>-->
+        <div id="menu1" class="tab-pane fade in active">
+            <h3>Find events</h3>
+            <p>1.	events listed (a dropdown to choose expertise you wanna volunteer for and a button to volunteer).</p>
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Find trainers</h3>
+            <p>2.	search trainers</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
