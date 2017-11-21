@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>This is some text that will be shown always</h2>
+    <p>To make the tabs toggleable, add the data-toggle="pill" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
+    <ul class="nav nav-pills">
+        <!--<li class="active"><a data-toggle="pill" href="#home">Search Opportunities</a></li>-->
+        <li class="active"><a data-toggle="pill" href="#menu1">Find Events</a></li>
+        <li><a data-toggle="pill" href="#menu2">Fine a Trainer</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <!--<div id="home" class="tab-pane fade in active">-->
+        <!--<h3>This page is for searching opportunities.</h3>-->
+        <!--<p>Click the tabs above to choose if you wanna search for events or trainers.</p>-->
+        <!--</div>-->
+        <div id="menu1" class="tab-pane fade in active">
+            <h3>Find events</h3>
+            <p>1.	events listed (a dropdown to choose expertise you wanna volunteer for and a button to volunteer).</p>
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Event name?</th>
+                        <th>date</th>
+                        <th>venue</th>
+                        <th>Requirement</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Event.name No.1</td>
+                        <td><%= event.date %></td>
+                        <td><%= event.venue %></td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Action
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a></br>
+                                    <a class="dropdown-item" href="#">Another action</a></br>
+                                    <a class="dropdown-item" href="#">Something else here</a></br>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>test</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>test</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Find trainers</h3>
+            <p>2.	search trainers</p>
+        </div>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+</body>
+</html>

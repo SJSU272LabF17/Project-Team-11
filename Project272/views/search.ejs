@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fixed top navbar example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>This is some text that will be shown always</h2>
+    <p>To make the tabs toggleable, add the data-toggle="pill" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
+
+    <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">
+            <h3>Find events</h3>
+            <p>1.	events listed (a dropdown to choose expertise you wanna volunteer for and a button to volunteer).</p>
+            <div>
+                <img src="pics/line2.png" alt="Smiley face" height="5" width="1109">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Event name</th>
+                        <th>venue</th>
+                        <th>Requirement</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+
+                        <td><%= event[1].date %></td>
+                        <td><%= event[1].name%></td>
+                        <td><%= event[1].venue %></td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    I wanna do...
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a></br>
+                                    <a class="dropdown-item" href="#">Another action</a></br>
+                                    <a class="dropdown-item" href="#">Something else here</a></br>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th>Description:</th>
+                        <td colspan="2"><%= event[1].description%></td>
+                        <td><button type="button" class="btn btn-info">Count Me in!</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <img src="pics/line2.png" alt="Smiley face" height="5" width="1109">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+
+                        <th>Event name</th>
+                        <th>date</th>
+                        <th>venue</th>
+                        <th>Requirement</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>test</td>
+                    </tr>
+                    <tr>
+
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>test</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+            <h3>Find trainers</h3>
+            <p>2.	search trainers</p>
+        </div>
+        <div class="tab-pane" id="messages" role="tabpanel">message</div>
+        <div class="tab-pane" id="settings" role="tabpanel">settings</div>
+    </div>
+</div>
+
+</body>
+</html>
+<!-- Nav tabs -->
