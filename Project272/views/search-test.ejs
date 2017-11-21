@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Search for volunteering opportunities</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="container">
+    </br>
+    <h2>Welcome to the searching page</h2>
+    <p>At here, you are able to sign up for volunteering events or find trainers to help you with what you need</p>
+    <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Trainers</a>
+        </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">
+            <h3>Find events</h3>
+            <p>1.	events listed (a dropdown to choose expertise you wanna volunteer for and a button to volunteer).</p>
+            <div>
+                <img src="pics/line2.png" alt="Smiley face" height="5" width="1109">
+
+
+
+                <% for(var i=0; i < event.length; i++) { %>
+
+
+                <table class="table table-striped table-bordered table-warning">
+                    <thead>
+                    <tr>
+
+                        <th width="15%">Date</th>
+                        <th width="35%">Event name</th>
+                        <th width="35%">venue</th>
+                        <th width="15%">Requirement</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+
+                        <td><%= event[i].date %></td>
+                        <td><%= event[i].name%></td>
+                        <td><%= event[i].venue %></td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    I wanna do...
+                                </button>
+                                <div class="dropdown-menu">
+                                    <% for(var j=0; j < event[i].requirement.length; j++) { %>
+                                    <a class="dropdown-item" href="#"><%= event[i].requirement[j].expertise_name %></a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th>Description:</th>
+                        <td colspan="2"><%= event[i].description%></td>
+                        <td><button type="button" class="btn btn-success">Count Me in!</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <img src="pics/line2.png" alt="Smiley face" height="5" width="1109">
+
+                <% } %>
+
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+            <h3>Find trainers</h3>
+            <p>2.	search trainers</p>
+
+
+
+            <table class="table table-striped">
+                <thead class="thead-inverse">
+                <tr>
+
+                    <th scope="row">#</th>
+                    <th >First Name</th>
+                    <th >Email Address</th>
+                    <th>&nbsp&nbspTake Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var m=0; m < trainer.length; m++) { %>
+                <tr>
+                    <td scope="row"><%= m+1 %></td>
+                    <td><%= trainer[m].firstName%></td>
+                    <td><%= trainer[m].email %></td>
+                    <td><button type="button" class="btn btn-warning">Contact me</button></td>
+                </tr>
+
+                <% } %>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+<!-- Nav tabs -->
