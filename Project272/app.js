@@ -45,12 +45,21 @@ var routes = require('./routes/index')(passport);
 app.use('/', routes);
 app.use('/', searchs);
 app.use('/', tests);
+
+var profile = require('./routes/profile');
+app.use('/profile', profile.profile);
+app.use('/addExpertiseVolunteer', profile.addExpertiseVolunteer);
+app.use('/addExpertiseTrain', profile.addExpertiseTrain);
+app.use('/goToEvent', profile.goToEvent);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
+
+
 
 // development error handler
 // will print stacktrace
