@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Search for volunteering opportunities</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='stylesheets/search.css' />
+</head>
+
+<body>
+
+<div class="container">
+    </br>
+    <h2>Welcome to the searching page</h2>
+    <p>At here, you are able to sign up for volunteering events or find trainers to help you with what you need</p>
+    <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Trainers</a>
+        </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">
+            <div class="container">
+
+                <section class="col-xs-12 col-sm-6 col-md-12">
+
+
+                    <% for(var i=0; i < event.length; i++) { %>
+
+                    <article class="search-result row">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <a href="#" title="Lorem ipsum" class="thumbnail"><img alt = "Lorem ipsum" src= <%="https://picsum.photos/250/140?image=" + Math.floor(Math.random() * 1000)%>  /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-2">
+                            <ul class="meta-search">
+                                <li><i class="glyphicon glyphicon-calendar"><img src="https://www.flaticon.com/premium-icon/icons/svg/55/55281.svg" width="12" length="12"/></i> <span><%= event[i].date%></span></li>
+                                <li><i class="glyphicon glyphicon-time"><img src="http://www.publicdomainpictures.net/pictures/80000/velka/clock-icon.jpg" width="12" length="12"/></i> <span>9: 30pm</span></li>
+                                <li><i class="glyphicon glyphicon-tags"><img src="http://downloadicons.net/sites/default/files/tag-icon-23340.png" width="12" length="12"/></i> <span><%= event[i].venue%></span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <h3><a href="#" title=""><%= event[i].name%></a></h3>
+                            <p><%= event[i].description%></p>
+
+                        </div>
+                        <span class="clearfix borda"></span>
+                    </article>
+
+
+
+
+                    <% } %>
+
+
+                    <article class="search-result row">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/food" alt="Lorem ipsum" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-2">
+                            <ul class="meta-search">
+                                <li><i class="glyphicon glyphicon-calendar"><img src="https://www.flaticon.com/premium-icon/icons/svg/55/55281.svg" width="12" length="12"/></i> <span>02/13/2014</span></li>
+                                <li><i class="glyphicon glyphicon-time"><img src="http://www.publicdomainpictures.net/pictures/80000/velka/clock-icon.jpg" width="12" length="12"/></i> <span>8:32 pm</span></li>
+                                <li><i class="glyphicon glyphicon-tags"><img src="http://downloadicons.net/sites/default/files/tag-icon-23340.png" width="12" length="12"/></i> <span>Food</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>
+                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                        </div>
+                        <span class="clearfix borda"></span>
+                    </article>
+
+
+
+                </section>
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+            <h3>Find trainers</h3>
+            <p>2.	search trainers</p>
+
+
+
+            <table class="table table-striped">
+                <thead class="thead-inverse">
+                <tr>
+
+                    <th scope="row">#</th>
+                    <th >First Name</th>
+                    <th >Email Address</th>
+                    <th>&nbsp&nbspTake Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var m=0; m < trainer.length; m++) { %>
+                <tr>
+                    <td scope="row"><%= m+1 %></td>
+                    <td><%= trainer[m].firstName%></td>
+                    <td><%= trainer[m].email %></td>
+                    <td><button type="button" class="btn btn-warning">Contact me</button></td>
+                </tr>
+
+                <% } %>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+<!-- Nav tabs -->
