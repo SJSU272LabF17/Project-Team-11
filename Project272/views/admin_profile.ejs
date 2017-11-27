@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>User profile</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		.pageContent
+		{
+			margin: 80px;
+		}
+		.navbar-login
+		{
+			width: 305px;
+			padding: 10px;
+			padding-bottom: 0px;
+		}
+		.navbar-login-session
+		{
+			padding: 10px;
+			padding-bottom: 0px;
+			padding-top: 0px;
+		}
+		.icon-size
+		{
+			font-size: 87px;
+		}	
+		header 
+		{
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    z-index: 100;
+		}
+		
+		.image-preview-input {
+		    position: relative;
+			overflow: hidden;
+			margin: 0px;    
+		    color: #333;
+		    background-color: #fff;
+		    border-color: #ccc;    
+		}
+		.image-preview-input input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		.image-preview-input-title {
+		    margin-left:2px;
+		}
+	</style>
+	<script>
+        $(document).ready(function()
+		{
+        var navItems = $('.admin-menu li > a');
+        var navListItems = $('.admin-menu li');
+        var allWells = $('.admin-content');
+        var allWellsExceptFirst = $('.admin-content:not(:first)');
+        allWellsExceptFirst.hide();
+        navItems.click(function(e)
+        {
+            e.preventDefault();
+            navListItems.removeClass('active');
+            $(this).closest('li').addClass('active');
+            allWells.hide();
+            var target = $(this).attr('data-target-id');
+            $('#' + target).show();
+        });
+        });
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition, showError);
+		    } else { 
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		    
+		}
+		function showPosition(position) {
+			$('#lat').val(position.coords.latitude);
+		    $('#lon').val(position.coords.longitude);
+		}
+		function showError(error) {
+		    switch(error.code) {
+		        case error.PERMISSION_DENIED:
+		            x.innerHTML = "User denied the request for Geolocation."
+		            break;
+		        case error.POSITION_UNAVAILABLE:
+		            x.innerHTML = "Location information is unavailable."
+		            break;
+		        case error.TIMEOUT:
+		            x.innerHTML = "The request to get user location timed out."
+		            break;
+		        case error.UNKNOWN_ERROR:
+		            x.innerHTML = "An unknown error occurred."
+		            break;
+		    }
+		}
+		
+		$(document).on('click', '#close-preview', function(){ 
+		    $('.image-preview').popover('hide');
+		    // Hover befor close the preview
+		    $('.image-preview').hover(
+		        function () {
+		           $('.image-preview').popover('show');
+		        }, 
+		         function () {
+		           $('.image-preview').popover('hide');
+		        }
+		    );    
+		});
+		
+		$(function() {
+		    // Create the close button
+		    var closebtn = $('<button/>', {
+		        type:"button",
+		        text: 'x',
+		        id: 'close-preview',
+		        style: 'font-size: initial;',
+		    });
+		    closebtn.attr("class","close pull-right");
+		    // Set the popover default content
+		    $('.image-preview').popover({
+		        trigger:'manual',
+		        html:true,
+		        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+		        content: "There's no image",
+		        placement:'bottom'
+		    });
+		    // Clear event
+		    $('.image-preview-clear').click(function(){
+		        $('.image-preview').attr("data-content","").popover('hide');
+		        $('.image-preview-filename').val("");
+		        $('.image-preview-clear').hide();
+		        $('.image-preview-input input:file').val("");
+		        $(".image-preview-input-title").text("Browse"); 
+		    }); 
+		    // Create the preview image
+		    $(".image-preview-input input:file").change(function (){     
+		        var img = $('<img/>', {
+		            id: 'dynamic',
+		            width:250,
+		            height:200
+		        });      
+		        var file = this.files[0];
+		        var reader = new FileReader();
+		        // Set preview image into the popover data-content
+		        reader.onload = function (e) {
+		            $(".image-preview-input-title").text("Change");
+		            $(".image-preview-clear").show();
+		            $(".image-preview-filename").val(file.name);            
+		            img.attr('src', e.target.result);
+		            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+		        }        
+		        reader.readAsDataURL(file);
+		    });  
+		});
+	</script>
+</head>
+<body>
+	<header>
+		<div class="navbar navbar-default .navbar-static-top " role="navigation">
+		    <div class="container"> 
+		        <div class="navbar-header">
+		            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span> 
+		            </button>
+		            <a href="/admin" class="navbar-brand">BumpAlert</a>
+		        </div>
+		        <div class="collapse navbar-collapse">
+		            <ul class="nav navbar-nav navbar-right">
+			            <li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Region
+		                    	<span class="caret"></span>
+		                    </a>
+		                    <ul class="dropdown-menu">
+		                        <li><a href="#">Liberty City</a></li>
+		                        <li><a href="#">San Andreas</a></li>
+		                        <li><a href="#">Los Santos</a></li>
+		                    </ul>
+		                </li>
+		                <li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                        <span class="glyphicon glyphicon-user"></span> 
+		                        <strong><%= data.username %></strong>
+		                        <span class="glyphicon glyphicon-chevron-down"></span>
+		                    </a>
+		                    <ul class="dropdown-menu">
+		                        <li>
+		                            <div class="navbar-login">
+		                                <div class="row">
+		                                    <div class="col-lg-4">
+												<img src="images/default-user-image.jpg" class="img-circle img-responsive center-block" alt="user_profile_photo" width= 100>
+		                                    </div>
+		                                    <div class="col-lg-6">
+		                                        <p class="text-center"><strong><%= data.username %></strong></p>
+		                                        <p class="text-center small">sjsu@sjsu.com</p>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </li>
+		                        <li class="divider"></li>
+		                        <li>
+		                            <div class="navbar-login navbar-login-session">
+		                                <div class="row">
+		                                    <div class="col-sm-12">
+		                                        <p>
+		                                            <a href="/authentication/logout" class="btn btn-danger btn-block">Log Out</a>
+		                                        </p>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </li>
+		                    </ul>
+		                </li>
+		            </ul>
+		        </div>
+		    </div>
+		</div>
+	</header>
+	<section class="pageContent">
+	<div class="container" id="body">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked admin-menu" >
+                    <li class="active"><a href="" data-target-id="dashboard"><i class="glyphicon glyphicon-th-large"></i> Dashboard</a></li>
+                    <li><a href="" data-target-id="profile"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+                    <li><a href="" data-target-id="add-new-alert"><i class="glyphicon glyphicon-edit"></i> Add New Alert</a></li>
+                    <li><a href="" data-target-id="alert-management"><i class="glyphicon glyphicon-exclamation-sign"></i> Alert Management</a></li>
+                    <li><a href="" data-target-id="user-management"><i class="glyphicon glyphicon-list"></i> User Management</a></li>
+                    <li><a href="" data-target-id="change-password"><i class="glyphicon glyphicon-lock"></i> Change Password</a></li>
+                    <li><a href="" data-target-id="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+                </ul>
+            </div>
+
+			<div class="col-md-9  admin-content" id="dashboard">
+	            <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dashboard</h3>
+                    </div>
+                    <div class="panel-body">
+                        <% include dashboard_tab.ejs %>
+                    </div>
+	            </div>
+            </div>
+
+            <div class="col-md-9  admin-content" id="profile">
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Username</h3>
+                    </div>
+                    <div class="panel-body">
+                        <%= data.username %>
+                    </div>
+                </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Email</h3>
+                    </div>
+                    <div class="panel-body">
+                        sjsu@sjsu.edu
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9  admin-content" id="add-new-alert">
+	            <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Fill in the form</h3>
+                    </div>
+                    <div class="panel-body">
+	                    <div class="col-sm-9">
+	                    	<form action="/alerts/addnewalert" method="post">
+								<div class="col-md-12">
+									<label>Upload your image</label>
+									<div class="row">    
+										<div class="col-md-9">  
+											<div class="input-group image-preview">
+												<input type="text" class="form-control image-preview-filename" disabled="disabled">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+														<span class="glyphicon glyphicon-remove"></span> Clear
+													</button>
+													<div class="btn btn-default image-preview-input">
+														<span class="glyphicon glyphicon-folder-open"></span>
+														<span class="image-preview-input-title">Browse</span>
+														<input type="file" name="image"/>
+													</div>
+												</span>
+											</div>
+										</div>
+									</div>
+			                    </div><br/><br/><br/><br/>
+			                    <div class="col-md-9">
+			                    	<button type="button" class="btn btn-primary btn-md" onclick="getLocation()">Get current location</button>
+								</div><br/><br/>
+			                    <div class="form-group col-md-4">
+									<label for="latitude">Latitude:</label>
+									<input id="lat" type="text" class="form-control" name="latitude">
+								</div>
+								<div class="form-group col-offset-2 col-md-4">
+									<label for="longitude">Longitude:</label>
+									<input id="lon" type="text" class="form-control" name="longitude">
+								</div><br/><br/><br/>
+			                    <div class="form-group col-md-9">
+									<label for="description">Description:</label>
+									<textarea class="form-control" rows="5" name="description"></textarea>
+								</div>
+								<div class="col-md-9">					
+									<button type="submit" class="btn btn-primary btn-md">Submit</button>
+								</div>
+							</form>
+						</div>
+	                </div>
+		        </div>
+	        </div>
+
+            <div class="col-md-9  admin-content" id="alert-management">
+	            <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Alert List</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="" class="table-responsive">
+	                        <table class="table table-striped">
+		                        <thead >
+			                        <tr>
+				                        <th> Alert ID</th>
+				                        <th> Username</th>
+				                        <th> Status</th>
+				                        <th> Edit</th>
+			                        </tr>
+		                        </thead>
+		                        <tbody>
+		                        	<% for(var i=0; i<data.json.length; i++){ %>
+				                        <tr>
+					                        <td> <a href="#"><%= data.json[i].id %></a></td>
+					                        <td> <%= data.json[i].username %></td>
+					                        <td> <%= data.json[i].status %></td>
+						                    <td><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-pencil"></span></a></td>
+										</tr>
+			                        <% } %>
+		                        </tbody>
+	                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+               
+                        
+            <div class="col-md-9  admin-content" id="user-management">
+	            <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">User List</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="" class="table-responsive">
+                        <table class="table table-striped">
+	                        <thead >
+		                        <tr>
+			                        <th>Username</th>
+			                        <th>Region</th>
+		                        </tr>
+	                        </thead>
+	                        <tbody>
+	                        	<% for(var i=0; i<data.json.length; i++){ %>
+			                        <tr>
+				                        <td><a href="#"><%= data.json[i].username %></a></td>
+										<td><%= data.json[i].region %></td>
+			                        </tr>
+		                        <% } %>
+	                        </tbody>
+                        </table>
+                        </div>
+                    </div>
+	            </div>
+            </div>
+<!--
+			<div class="col-md-9  admin-content" id="settings">
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Notification</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="label label-success">allowed</div>
+                    </div>
+                </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Newsletter</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="badge">Monthly</div>
+                    </div>
+                </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Admin</h3>
+
+                    </div>
+                    <div class="panel-body">
+                         <div class="label label-success">yes</div>
+                    </div>
+                </div>
+            </div>
+-->
+            <div class="col-md-9  admin-content" id="change-password">
+                <form action="/password" method="post">
+                    <div class="panel panel-info" style="margin: 1em;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">New Password</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                	<div class="col-md-9">
+	                                    <input type="password" class="form-control" name="password" id="new_password" ><br/>
+										<button type="submit" class="btn btn-primary btn-md">Submit</button>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
+</body>
+</html>
