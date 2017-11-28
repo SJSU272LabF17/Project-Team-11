@@ -6,11 +6,11 @@ var expertiseListDropDownVol =[];
 
 
 function profile(req,res){
-
+	console.log(req.user.firstName);
 	var expertiseAll;
 	var user;
 	var events;
-	var email= "divya@divya.com";
+	var email= req.user.email;
 	//var email="admin@sjsu.edu";
 //	var user=
 //		         {
