@@ -6,17 +6,7 @@ var expertiseListDropDownVol =[];
 
 
 function profile(req,res){
-//	console.log("entered profile");
-//  Expertise.find({},function(err, results){
-//	  console.log("f");
-//	  var userDetails ={
-//	"firstname": "Divya" ,
-//      "email": "admin@sjsu.edu" 
-//      
-//	  }
-//	  res.render('profile.ejs', {user:userDetails });
- // , expertiseList:results
-  //})
+
 	var expertiseAll;
 	var user;
 	var events;
@@ -42,10 +32,10 @@ function profile(req,res){
 //				            	]
 //		
 //		         };
-	console.log("hit");
+	//console.log("hit");
 	User.findOne({email:email}, function(err, results){
 		user=results;
-		console.log(user+"user");
+		//console.log(user+"user");
 	
 	Expertise.find({}, function(err, results){
 		
@@ -70,7 +60,7 @@ function profile(req,res){
 	
  
 	     // console.log(user+"user");
-	res.render('profile.ejs', {user:user, expertiseAll:expertiseAll, events:events });
+	res.render('main.ejs', {user:user, expertiseAll:expertiseAll, events:events });
 	  });
 	 });
 	 });
@@ -116,7 +106,7 @@ function addExpertiseVolunteer(req,res){
 		
 		User.findOneAndUpdate(
 			 //{ email: req.body.email }, 
-			 { email: req.body.email , "volunteer.expertise_id": {$ne:expertiseToAdd.expertise_id} }, 
+			 { email: req.body.email  }, 
 			    { $push: { volunteer: expertiseToAdd } },
 			    //{upsert: true}, 
 			    function(err, doc){
@@ -125,6 +115,38 @@ function addExpertiseVolunteer(req,res){
 			    });
 		profile(req,res);
 		
+}
+
+function deleteExpertiseVolunteer(req,res){
+	
+	var expertiseToDelete= req.body.delete_volunteer;
+	
+	expertiseToDelete = JSON.parse(expertiseToDelete);
+
+	
+	console.log(req.body.email);
+	console.log(expertiseToAdd.expertise_id);
+	
+	User.findOneAndUpdate(
+		 //{ email: req.body.email }, 
+		 { email: req.body.email , "volunteer.expertise_id": expertiseToDelete }, 
+		    { $pull: { volunteer: expertiseToAdd } },
+		    //{upsert: true}, 
+		    function(err, doc){
+		        if (err) {console.log(err);}
+		        else {console.log("succesfully deleted");}
+		    });
+	profile(req,res);
+	
+//	<form id ="deleteVol" method="post" action="deleteExpertiseVolunteer">
+//	<td >
+//
+//	 <a href="#" onclick="document.getElementById('deleteVol').submit();"><%= events[i].name %></a>
+//	</td> </tr>
+//	<input name="delete_volunteer" value="<%= user.volunteer[i].expertise_id %>" style="visibility:hidden"></input>
+//	<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+//	  </form>
+	
 }
 
 function addExpertiseTrain(req,res){
@@ -149,6 +171,7 @@ function addExpertiseTrain(req,res){
 
 
 function goToEvent(req,res){
+	//<a href="#" onclick="document.getElementById('event').submit();"><%= events[i].name %></a>
 	console.log(req.body.email);
 	console.log(req.body.event_id);
 	//redirectToEventPage

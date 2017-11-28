@@ -44,6 +44,9 @@ Name
 <td >
 <span><%= user.volunteer[i].expertise_name %></span>
 </td>
+<td>
+
+</td>
 </tr>
  <% } %>
  
@@ -88,26 +91,42 @@ Name
 </td>
 </tr>
 </form>
+
+
+<tr>
+<td>
+ <span >Events created by me:</span>
+ </td></tr>
+<br/><br/><br/>
+<tr>
+<td> Event Name</td>
+<td> Date </td>
+<td> Venue </td>
+<td> Description</td>
+</tr>
+
+  <% for(var i=0; i<events.length; i++) {%>
+<tr >
+ <form id ="event" method="post" action="/goToEvent">
+<td >
+
+ <span><%= events[i].name %></span>
+  <span><%= events[i].date %></span>
+   <span><%= events[i].venue %></span>
+    <span><%= events[i].description %></span>
+</td> </tr>
+<tr><td>
+<input name="event_id" value="<%= events[i].event_id %>" style="visibility:hidden"></input>
+<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+  </form>
+<% } %>
+</td>
+</tr>
  
 
 </table>
   </div>
   </form>
-  <form method="post" action="/addExpertise">
-  <button>Add</button>
-  </form>
-  
- <span >Events created by me:</span>
-  <% for(var i=0; i<events.length; i++) {%>
-<tr >
- <form method="post" action="/goToEvent">
-<td ><a><%= events[i].name %></a></td> </tr>
-<input name="event_id" value="<%= events[i].event_id %>" style="visibility:hidden"></input>
-<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
-  </form>
-<% } %>
-
-
-  <br>
+ 
   </body>
 </html>

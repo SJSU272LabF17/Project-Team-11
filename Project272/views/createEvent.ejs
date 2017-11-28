@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Search for volunteering opportunities</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+  <body>
+  
+  
+<div class="container col-md-9 order-content tab-pane">
+<table>
+<tr><td>
+<span>Create an event</span>
+</td></tr>
+<tr>
+<td>
+
+  <% for(var i=0; i<expertiseReq.length; i++) {%>
+<tr >
+ <form id ="deleteVol" method="post" action="/delete">
+<td >
+<span><%= expertiseReq[i].expertise_name %></span>
+ 
+</td> 
+<td>
+<span><%= expertiseReq[i].number %></span>
+</td>
+<td>
+<a href="#"  onclick="document.getElementById('deleteVol').submit();">Delete</a>
+<input name="deleteExpertise" value ='<%-JSON.stringify(expertiseReq[i])%>' style="visibility:hidden"></input>
+<input name="name" value='<%=name%>' style="visibility:hidden"></input>
+<input name="date" value='<%=date%>'style="visibility:hidden">
+<input name="venue" value='<%=venue%>' style="visibility:hidden">
+<input name="description" value='<%=description%>'  style="visibility:hidden">
+</td>
+
+  </form>
+  </tr>
+<% } %>
+</td>
+</tr>
+
+<form method="post" action="/addVolunteerNeed" >
+ <tr>
+<td><select name="selectVolunteerNeed">
+ <% for(var i=0; i<expertiseAll.length; i++) {%>
+
+ <option value ='<%-JSON.stringify(expertiseAll[i])%>'><%= expertiseAll[i].expertise_name %></option>
+  
+  <% } %>
+</select>
+</td>
+<td><select id="selectVolunteerNumber" name="selectVolunteerNumber">
+ <% for(var i=0; i<numberInList.length; i++) {%>
+
+ <option value ='<%=numberInList[i]%>'><%= numberInList[i] %></option>
+  
+  <% } %>
+</select>
+</td>
+<td>
+<button class="btn btn-outline-success" onclick="submitForms();" >Add</button>
+
+</td>
+</tr>
+</form>
+</table>
+
+
+<table>
+<form method="post" action="/addEvent">
+
+
+<tr><td>
+<span>Event Name</span></td>
+<td><input id="name" name="name" value='<%=name%>' ></input></td>
+</tr>
+<tr><td>
+<span>Date</span></td>
+<td><input id="date" name="date" value='<%=date%>'></input></td>
+</tr>
+<tr><td>
+<span>Venue</span></td>
+<td><input id="venue" name="venue" value='<%=venue%>'></input></td>
+</tr>
+<tr><td>
+<span>Description</span></td>
+<td><input id="description" name="description" value='<%=description%>' ></input></td>
+</tr>
+
+
+
+
+<tr>
+<td></td>
+<td></td>
+<td>
+<br/>
+<button class="btn btn-outline-success">Create Event</button>
+</td></tr>
+</form>
+
+
+
+
+</table>
+
+</div>
+
+<script>
+/* var expertise=[];
+submitForms = function(){
+	alert("here"+document.getElementById('selectVolunteerNumber').value);
+    document.getElementById('event').submit(); }*/
+    
+    
+
+</script>
+</body>
+</html>
