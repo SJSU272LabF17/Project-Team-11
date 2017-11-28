@@ -45,6 +45,28 @@ var routes = require('./routes/index')(passport);
 app.use('/', routes);
 app.use('/', searchs);
 app.use('/', tests);
+
+var profile = require('./routes/profile');
+app.use('/profile', profile.profile);
+app.use('/addExpertiseVolunteer', profile.addExpertiseVolunteer);
+app.use('/addExpertiseTrain', profile.addExpertiseTrain);
+app.use('/goToEvent', profile.goToEvent);
+
+//app.use('/viewOpportunities', profile.viewOpportunities);
+
+var main = require('./routes/main');
+app.use('/main', main.main);
+
+
+var createEvent = require('./routes/createEvent');
+app.use('/createEvent', createEvent.createEvent);
+app.use('/addVolunteerNeed',createEvent.addVolunteerNeed);
+app.use('/delete',createEvent.deleteVolFromEvent);
+app.use('/addEvent',createEvent.addEvent);
+
+
+
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -52,11 +74,15 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
+        console.log("error message"+err.message);
+        console.log("error "+err);
         res.render('error', {
             message: err.message,
             error: err
