@@ -1,5 +1,6 @@
 var Expertise = require('../models/expertise');
 var Event = require('../models/event');
+var profile = require('./profile');
 var expertiseReq=[];
 var expertiseAll;
 var numberInList=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
@@ -13,10 +14,10 @@ var description;
 
 function createEvent(req,res){
 	//retainDetails(req,res);
-	var email=req.body.email;
+	 email=req.body.email;
 	Expertise.find({}, function(err, results){		
 	 expertiseAll=results;	
-	console.log("hitting createEvent");	
+	console.log("hitting createEvent"+email);	
 	//res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
 	 renderPage(req,res);
 	});
@@ -96,7 +97,7 @@ function addEvent(req,res){
 	
 	
 	event.save();
-	
+	profile.profile(req,res);
 	
 }
 
@@ -109,7 +110,7 @@ function retainDetails(req,res){
 }
 
 function renderPage(req,res){
-	res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq, name:name, date:date, venue:venue, description:description});
+	res.render('mainCopy.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq, name:name, date:date, venue:venue, description:description});
 	
 }
 
