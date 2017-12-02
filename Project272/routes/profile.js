@@ -6,12 +6,14 @@ var expertiseListDropDownVol =[];
 
 
 function profile(req,res){
-	console.log(req.user.firstName);
-	var expertiseAll;
-	var user;
-	var events;
-	var email= req.user.email;
-	//var email="admin@sjsu.edu";
+	if(req.isAuthenticated()) {
+
+        console.log(req.user.firstName);
+        var expertiseAll;
+        var user;
+        var events;
+        var email = req.user.email;
+        //var email="admin@sjsu.edu";
 //	var user=
 //		         {
 //		             "id": "divya",
@@ -32,18 +34,18 @@ function profile(req,res){
 //				            	]
 //		
 //		         };
-	//console.log("hit");
-	User.findOne({email:email}, function(err, results){
-		user=results;
-		//console.log(user+"user");
-	
-	Expertise.find({}, function(err, results){
-		
-		expertiseAll=results;
-	      //console.log(expertiseAll+"expertiseAll");
-		 
-	  Event.find({email:email}, function(err, results){
-	events=results;
+        //console.log("hit");
+        User.findOne({email: email}, function (err, results) {
+            user = results;
+            //console.log(user+"user");
+
+            Expertise.find({}, function (err, results) {
+
+                var expertiseAll = results;
+                //console.log(expertiseAll+"expertiseAll");
+
+                Event.find({email: email}, function (err, results) {
+                    events = results;
 //	var expertiseAll=[
 //       
 //           	{ "expertise_id":1, "expertise_name": "Expertise 1"},
@@ -57,14 +59,26 @@ function profile(req,res){
 //           	
 //           	
 //        ];
-	
- 
-	     // console.log(user+"user");
-	res.render('main.ejs', {user:user, expertiseAll:expertiseAll, events:events });
-	  });
-	 });
-	 });
+
+
+                    // console.log(user+"user");
+                    if(req.body.selectExpertiseVolunteer || req.body.selectExpertiseTrain){
+                        var updated = "True";
+                        res.redirect('/profile#Expertise')
+                    }else{
+                        var updated = "False";
+                        res.render('main.ejs', {user: user, expertiseAll: expertiseAll, events: events, flag: updated});
+                    }
+
+
+                });
+            });
+        });
+    }
+    else{
+		res.redirect('/login');
 	}
+}
 
 // JSON.parse('<%-JSON.stringify(expertiseAll[i])%>'
 //    mongo.connect(mongoURL, function(){

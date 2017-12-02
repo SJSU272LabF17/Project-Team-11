@@ -23,7 +23,7 @@ module.exports = function(passport){
 		}
 		else{
     		var blank = {
-    			firstName: 'Join Us'
+    			firstName: 'True'
 			}
     		res.render('homepage', {user: blank});
 		}
@@ -45,9 +45,9 @@ module.exports = function(passport){
 
 	/* Handle Login POST */
 	router.post('/login', passport.authenticate('login', {
-		successRedirect: '/home',
-		failureRedirect: '/',
-		failureFlash : true  
+		successRedirect: '/',
+		failureRedirect: '/login',
+		failureFlash : true
 	}));
 
 	/* GET Registration Page */
