@@ -25,10 +25,10 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="search" class="nav-link">Opportunity</a></li>
-            <li class="nav-item"><a href="profile" class="nav-link">Profile</a></li>
-            <li class="nav-item"><a href="createEvent" class="nav-link">Create Event</a></li>
-            <li class="nav-item"><a href="bucketlist" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="/search" class="nav-link">Opportunity</a></li>
+            <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
+            <li class="nav-item"><a href="/addEvent" class="nav-link">Create Event</a></li>
+
         </ul>
 
         <!--
@@ -100,25 +100,26 @@
                 <section class="col-xs-12 col-sm-6 col-md-12">
 
 
-                    <% for(var i=0; i < event.length; i++) { %>
+                    <% for(var i=0; i < event.length; i++) { if(event[i]){%>
                     <tr>
 
                     <article class="search-result row">
                         <div class="col-xs-12 col-sm-12 col-md-3">
-                            <a href="#" title="Lorem ipsum" class="thumbnail"><img alt = "https://umma.umich.edu/sites/default/files/styles/menu_feature/public/menu-annex-fall2017.jpg" onerror="this.onerror=null;this.src=this.alt;" src= <%="https://picsum.photos/250/140?image=" + Math.floor(Math.random() * 1000)%>  /></a>
+                            <a href="eventdetail/<%= event[i].event_id%>" title="Lorem ipsum" class="thumbnail"><img alt = "https://umma.umich.edu/sites/default/files/styles/menu_feature/public/menu-annex-fall2017.jpg" onerror="this.onerror=null;this.src=this.alt;" src= <%="https://picsum.photos/250/140?image=" + Math.floor(Math.random() * 1000)%>  /></a>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-2">
                             <ul class="meta-search">
                                 <li><i class="glyphicon glyphicon-calendar"><img src="https://www.flaticon.com/premium-icon/icons/svg/55/55281.svg" width="12" length="12"/></i> <span><%= event[i].date%></span></li>
-                                <li><i class="glyphicon glyphicon-time"><img src="http://www.publicdomainpictures.net/pictures/80000/velka/clock-icon.jpg" width="12" length="12"/></i> <span>9: 30pm</span></li>
+                                <li><i class="glyphicon glyphicon-time"><img src="http://www.publicdomainpictures.net/pictures/80000/velka/clock-icon.jpg" width="12" length="12"/></i> <span><%= event[i].time%></span></li>
                                 <li><i class="glyphicon glyphicon-tags"><img src="http://downloadicons.net/sites/default/files/tag-icon-23340.png" width="12" length="12"/></i> <span><%= event[i].venue%></span></li>
                             </ul>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-7">
-                            <h3><a href="#" title=""><%= event[i].name%></a></h3>
-                            <p><%= event[i].description%></p>
+                            <h3><a href="eventdetail/<%= event[i].event_id%>" title=""><%= event[i].name%></a></h3>
+                            <p><%= event[i].description%></p><button type="button" class="btn btn-info" style='float: right;'>Count me in</button>
 
                         </div>
+
                         <span class="clearfix borda"></span>
                     </article>
                     </tr>
@@ -126,7 +127,7 @@
 
 
 
-                    <% } %>
+                    <% }} %>
 
 
 
@@ -149,7 +150,7 @@
                     <br>
             <form method="post" action="/search-trainer" >
                 <tr>
-                    <td><select name="selectExpertise" class="custom-select">
+                    <td><select name="selectExpertise" class="custom-select" >
                             <% for(var i=0; i<expertiseAll.length; i++) {%>
 
                             <option value ='<%-JSON.stringify(expertiseAll[i])%>'><%= expertiseAll[i].expertise_name %></option>

@@ -13,66 +13,66 @@ var venue;
 var description;
 
 function createEvent(req,res){
-	if(req.isAuthenticated()){
+    if(req.isAuthenticated()){
 
-	//retainDetails(req,res);
-	 email=req.user.email;
-	Expertise.find({}, function(err, results){		
-	 expertiseAll=results;	
-	console.log("hitting createEvent"+email);	
-	//res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
-	 renderPage(req,res);
-	});
-	}
-	else{
-		res.redirect("/login");
-	}
+        //retainDetails(req,res);
+        email=req.user.email;
+        Expertise.find({}, function(err, results){
+            expertiseAll=results;
+            console.log("hitting createEvent"+email);
+            //res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
+            renderPage(req,res);
+        });
+    }
+    else{
+        res.redirect("/login");
+    }
 }
 
 
 function deleteVolFromEvent(req,res){
-	//retainDetails(req,res);
-	var deleteExpertise=req.body.deleteExpertise;
-	deleteExpertise = JSON.parse(deleteExpertise);
-	var expertise_id = deleteExpertise.expertise_id;
-	var expertise_name =deleteExpertise.expertise_name;
-	//var expertise= 
-	expertiseAll.push({expertise_id:expertise_id,expertise_name:expertise_name});
-	
-	for(var i=0;i<expertiseReq.length;i++){
-		 if (expertiseReq[i].expertise_id == expertise_id) {
-			
-			 expertiseReq.splice(i, 1);
+    //retainDetails(req,res);
+    var deleteExpertise=req.body.deleteExpertise;
+    deleteExpertise = JSON.parse(deleteExpertise);
+    var expertise_id = deleteExpertise.expertise_id;
+    var expertise_name =deleteExpertise.expertise_name;
+    //var expertise=
+    expertiseAll.push({expertise_id:expertise_id,expertise_name:expertise_name});
 
-	        }
-	}
-	//res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
-	 renderPage(req,res);
+    for(var i=0;i<expertiseReq.length;i++){
+        if (expertiseReq[i].expertise_id == expertise_id) {
+
+            expertiseReq.splice(i, 1);
+
+        }
+    }
+    //res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
+    renderPage(req,res);
 }
 
 function addVolunteerNeed(req,res){
-	console.log("hitting add V0l");
-	//retainDetails(req,res);
-	var selectVolunteerNeed=req.body.selectVolunteerNeed;
-	selectVolunteerNeed = JSON.parse(selectVolunteerNeed);
-	var expertise_id = selectVolunteerNeed.expertise_id;
-	var expertise_name =selectVolunteerNeed.expertise_name;
-	var expertise_number = req.body.selectVolunteerNumber;
-	for(var i=0;i<expertiseAll.length;i++){
-		 if (expertiseAll[i].expertise_id == expertise_id) {
-			
-			 expertiseAll.splice(i, 1);
+    console.log("hitting add V0l");
+    //retainDetails(req,res);
+    var selectVolunteerNeed=req.body.selectVolunteerNeed;
+    selectVolunteerNeed = JSON.parse(selectVolunteerNeed);
+    var expertise_id = selectVolunteerNeed.expertise_id;
+    var expertise_name =selectVolunteerNeed.expertise_name;
+    var expertise_number = req.body.selectVolunteerNumber;
+    for(var i=0;i<expertiseAll.length;i++){
+        if (expertiseAll[i].expertise_id == expertise_id) {
 
-	        }
-	}
-	
-	
-	var expertiseReq1= {"expertise_id":expertise_id,"expertise_name":expertise_name,"number":expertise_number};
-	expertiseReq.push(expertiseReq1);
-	//console.log(expertiseReq+"expertiseReq");
-	 renderPage(req,res);
-	//res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
-	
+            expertiseAll.splice(i, 1);
+
+        }
+    }
+
+
+    var expertiseReq1= {"expertise_id":expertise_id,"expertise_name":expertise_name,"number":expertise_number};
+    expertiseReq.push(expertiseReq1);
+    //console.log(expertiseReq+"expertiseReq");
+    renderPage(req,res);
+    //res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
+
 }
 
 function addEvent(req,res) {
@@ -107,21 +107,21 @@ function addEvent(req,res) {
 
     }
     else{
-    	res.redirect('/login');
-	}
+        res.redirect('/login');
+    }
 }
 
 function retainDetails(req,res){
-	 name=req.body.name;
-	 date=req.body.date;
-	 venue=req.body.venue;
-	 description=req.body.description;
-	 console.log(name+"name",date+"date",venue+"venue")
+    name=req.body.name;
+    date=req.body.date;
+    venue=req.body.venue;
+    description=req.body.description;
+    console.log(name+"name",date+"date",venue+"venue")
 }
 
 function renderPage(req,res){
-	res.render('mainCopy.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq, name:name, date:date, venue:venue, description:description});
-	
+    res.render('mainCopy.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq, name:name, date:date, venue:venue, description:description});
+
 }
 
 
@@ -130,3 +130,4 @@ exports.addVolunteerNeed=addVolunteerNeed;
 exports.deleteVolFromEvent=deleteVolFromEvent;
 exports.addEvent=addEvent;
 exports.retainDetails=retainDetails;
+

@@ -415,7 +415,7 @@ Name
 
   <% for(var i=0; i<events.length; i++) {%>
 <tr >
- <form id ="event" method="post" action="/goToEvent">
+
 <td width="20%">
 
  <span><%= events[i].name %></span></td>
@@ -425,11 +425,11 @@ Name
    <span><%= events[i].venue %></span></td>
    <td width="20%">
     <span><%= events[i].description %></span></td>
-    <td width="20%"><button>Event Details</button></td>
+    <td width="20%"><a href="eventdetail/<%= events[i].event_id%>"><button>Event Details</button></a></td>
 <td><br/><br/></td>
 <input name="event_id" value="<%= events[i].event_id %>" style="visibility:hidden"></input>
 <input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
-  </form>
+
 <% } %>
 </td>
 </tr>

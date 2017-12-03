@@ -173,7 +173,11 @@ body {
 ------------------------- */
 
 .featurette-divider {
-    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+     margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+ }
+
+.temp-divider {
+    margin: 1rem 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -204,4 +208,8 @@ body {
     .featurette-heading {
         margin-top: 7rem;
     }
+}
+
+.div-with-bg {
+    background-image: url('http://www.sjsu.edu/eop/pics/cart-3.jpg');
 }

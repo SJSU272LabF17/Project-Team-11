@@ -17,7 +17,7 @@ router.get('/display', function(req, res, next) {
         });
 });
 
-router.get('/addevent', function(req, res, next) {
+router.get('/addEvent', function(req, res, next) {
     if(req.user) {
         console.log("Welcome to addevent section!");
         Expertise.find({}, function (err, results) {
@@ -305,7 +305,8 @@ router.post('/addnewEvent',function(req,res){
             if(error){
                 console.error(error);
             }else{
-                res.redirect('addevent');
+                var url_temp = 'eventdetail/' + timestamp;
+                res.redirect(url_temp);
             }
         });
     });
