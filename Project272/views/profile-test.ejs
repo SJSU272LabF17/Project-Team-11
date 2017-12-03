@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Volunteer for Spartans</title>
+    <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- jQuery ui CSS-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Custom CSS-->
+    <link href="stylesheets/profile.css" rel="stylesheet">
+    <!-- Autocomplete funciton-->
+
+</head>
+<body>
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
+    <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span class="navbar-toggler-icon"></span></button><a href="/" class="navbar-brand"><img src="https://raptortech.com/wp-content/themes/Raptor_Theme/images/volunteer-coordinator-icon.png" height="30px" width="30px" class="img-fluid"></a>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="search" class="nav-link">Opportunity</a></li>
+            <li class="nav-item"><a href="profile" class="nav-link">Profile</a></li>
+            <li class="nav-item"><a href="createEvent" class="nav-link">Create Event</a></li>
+            <li class="nav-item"><a href="addEvent" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!--
+        <form class="form-inline mt-2 mt-md-0 ui-widget">
+        <input class="form-control mr-sm-2" id="tags" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        -->
+        <ul class="navbar-nav justify-content-end">
+
+            <li class="nav-item"></li><a href="/home" class="nav-link">Join Us</a>
+
+        </ul>
+
+
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <!-- <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> -->
+
+
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        <span class="hidden-xs"><%= user.firstName %> <%= user.lastName %></span>
+                    </div>
+                    <div class="profile-usertitle-job">
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#Personal"  data-toggle="tab">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <span class="hidden-xs">Profile</span> </a>
+                        </li>
+                        <li>
+                            <a href="#Expertise" data-toggle="tab">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span class="hidden-xs">My Interests</span> </a>
+                        </li>
+                        <li>
+                            <a href="#Events" data-toggle="tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                <span class="hidden-xs">My Events </span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+
+
+
+
+        <div class="tab-content">
+            <div class="col-md-9 order-content tab-pane" id="Personal">
+
+                <div class="form_main col-md-4 col-sm-5 col-xs-7 " >
+                    <h4 class="heading"><strong>Personal  Contact </strong><span></span></h4>
+                    <div class="form">
+
+                        <!-- PROFILE PAGE -->
+                        <div class="container">
+                            <table>
+                                <tr><th>
+                                        Name
+                                    </th>
+                                    <td width="10%">  </td>
+                                    <td>
+                                        <span>  <%= user.firstName %> <%= user.lastName %></span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th>Email</th>
+                                    <td width="10%">  </td>
+                                    <td><span><%= user.email %></span></td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 order-content tab-pane active" id="Expertise">
+
+                <div class="form_main  " >
+                    <table>
+                        <tr align="left">
+                            <th>What would you like to volunteer for? <br/><br/></th>
+
+                        </tr>
+                        <% for(var i=0; i<user.volunteer.length; i++) {%>
+                        <tr >
+                            <td >
+                                <span><%= user.volunteer[i].expertise_name %></span>
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        <% } %>
+                        <tr><td><br/></td></tr>
+
+                        <form method="post" action="/addExpertiseVolunteer" >
+                            <tr>
+                                <td><select name="selectExpertiseVolunteer">
+                                        <% for(var i=0; i<expertiseAll.length; i++) {%>
+
+                                        <option value ='<%-JSON.stringify(expertiseAll[i])%>'><%= expertiseAll[i].expertise_name %></option>
+
+                                        <% } %>
+                                    </select>
+                                    <input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-success">Add</button>
+                                </td>
+                            </tr>
+                            <tr><td><br/></td></tr>
+                        </form>
+
+                        <tr><td><hr /></td></tr>
+                        <tr align="left">
+
+                            <th>What can you train volunteers in?<br/><br/></th></tr>
+
+                        <% for(var i=0; i<user.train.length; i++) {%>
+                        <tr >
+                            <td ><span><%= user.train[i].expertise_name %></span></td> </tr>
+                        <% } %>
+                        <tr><td><br/></td></tr>
+                        <form method="post" action="/addExpertiseTrain" >
+                            <tr>
+                                <td><select name="selectExpertiseTrain">
+                                        <% for(var i=0; i<expertiseAll.length; i++) {%>
+                                        <option  value ='<%-JSON.stringify(expertiseAll[i])%>'  ><%= expertiseAll[i].expertise_name %></option>
+                                        <% } %>
+                                    </select>
+                                    <input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-success">Add</button>
+                                </td>
+                            </tr>
+
+                        </form>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-9 order-content tab-pane" id="Events">
+
+
+
+
+
+                <strong><span >Events created by me:</span></strong>
+
+                <br/>
+
+                <table>
+                    <tr>
+                        <td><span> Event Name</span></td>
+                        <td> <span>Date </span></td>
+                        <td><span> Venue </span></td>
+                        <td><span> Description</span></td>
+                    </tr>
+                    <tr><td> <br/> </td></tr>
+
+                    <% for(var i=0; i<events.length; i++) {%>
+                    <tr >
+                        <form id ="event" method="post" action="/goToEvent">
+                            <td width="20%">
+
+                                <span><%= events[i].name %></span></td>
+                            <td width="20%">
+                                <span><%= events[i].date %></span></td>
+                            <td width="20%">
+                                <span><%= events[i].venue %></span></td>
+                            <td width="20%">
+                                <span><%= events[i].description %></span></td>
+                            <td width="20%"><button>Event Details</button></td>
+                            <td><br/><br/></td>
+                            <input name="event_id" value="<%= events[i].event_id %>" style="visibility:hidden"></input>
+                            <input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+                        </form>
+                        <% } %>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+        </div>
+        <script>
+            $(document).ready(function() {
+                if (location.hash) {
+                    $("a[href='" + location.hash + "']").tab("show");
+                }
+                $(document.body).on("click", "a[data-toggle]", function(event) {
+                    location.hash = this.getAttribute("href");
+                });
+            });
+            $(window).on("popstate", function() {
+                var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+                $("a[href='" + anchor + "']").tab("show");
+            });
+        </script>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<hr class="featurette-divider">
+
+<hr class="featurette-divider">
+<footer>
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p class="float-left">© 2017 Team 11. ·<a href="#">Privacy</a> ·<a href="#">Terms</a></p>
+</footer>
+<!-- Bootstrap JavaScript-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Latest compiled and minified CSS -->
+
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Eventinfo = require('../models/event');
+var Event = require('../models/event');
 var Expertise = require('../models/expertise');
 var User = require('../models/user');
 
@@ -42,14 +42,15 @@ router.get('/search', function(req, res, next) {
                 "lastName": "James"
             }
         ];
+        var trainer_temp = [];
         Expertise.find({}, function (err, results) {
 
 
             var expertiseAll = results;
 
-            Eventinfo.find({}, function (err, doc) {
-                console.log(doc[0]);
-                res.render('search', {event: doc, trainer: trainers, user: req.user, expertiseAll: expertiseAll, flagsearch:"False"});
+            Event.find({}, function (err, doc) {
+                console.log(doc);
+                res.render('search', {event: doc, trainer: trainer_temp, user: req.user, expertiseAll: expertiseAll, flagsearch:"False"});
 
             });
         });
@@ -99,7 +100,7 @@ router.post('/search-trainer', function(req, res, next) {
         ];
         var expertise = JSON.parse(expertise);
 
-        User.find({  }, function(err,trainers){
+        User.find({ }, function(err,trainers){
         Expertise.find({}, function (err, results) {
             console.log(trainers);
             console.log('This is expertise field');
@@ -116,7 +117,7 @@ router.post('/search-trainer', function(req, res, next) {
             }
 
 
-            Eventinfo.find({}, function (err, doc) {
+            Event.find({}, function (err, doc) {
 
                 res.render('search', {event: doc, trainer: render_user, user: req.user, expertiseAll: expertiseAll, flagsearch: "True",
                 expertname: expertise.expertise_name });
