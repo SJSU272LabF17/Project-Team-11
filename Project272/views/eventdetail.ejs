@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Search for volunteering opportunities</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='stylesheets/style.css' />
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/alert.css' />
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+
+
+    <style>
+        .navbar-login
+        {
+            width: 305px;
+            padding: 10px;
+            padding-bottom: 0px;
+        }
+
+        .navbar-login-session
+        {
+            padding: 10px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
+
+        .icon-size
+        {
+            font-size: 87px;
+        }
+        .dropdown-toggle
+        {
+            width：50%;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function()
+        {
+            var navItems = $('.admin-menu li > a');
+            var navListItems = $('.admin-menu li');
+            var allWells = $('.admin-content');
+            var allWellsExceptFirst = $('.admin-content:not(:first)');
+
+            allWellsExceptFirst.hide();
+            navItems.click(function(e)
+            {
+                e.preventDefault();
+                navListItems.removeClass('active');
+                $(this).closest('li').addClass('active');
+                allWells.hide();
+                var target = $(this).attr('data-target-id');
+                $('#' + target).show();
+            });
+        });
+
+        $('#newcom-btn').click(function() {
+            console.log('Click function happens!');
+            alert('oh my god!');
+            return true;
+        });
+
+
+        <!--$('#newcom-btn').click(function(event) {-->
+        <!--event.preventDefault();-->
+        <!--$('#newComment').append('username','user');-->
+        <!--$('#newComment').append('alert_id', '');-->
+        <!--console.log($('#newComment').val());-->
+        <!--return true;-->
+        <!--});-->
+
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
+    <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span class="navbar-toggler-icon"></span></button><a href="/" class="navbar-brand"><img src="https://raptortech.com/wp-content/themes/Raptor_Theme/images/volunteer-coordinator-icon.png" height="30px" width="30px" class="img-fluid"></a>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="search" class="nav-link">Opportunity</a></li>
+            <li class="nav-item"><a href="profile" class="nav-link">Profile</a></li>
+            <li class="nav-item"><a href="createEvent" class="nav-link">Create Event</a></li>
+            <li class="nav-item"><a href="addEvent" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!--
+        <form class="form-inline mt-2 mt-md-0 ui-widget">
+        <input class="form-control mr-sm-2" id="tags" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        -->
+        <ul class="navbar-nav justify-content-end">
+
+            <li class="nav-item"></li><a href="/home" class="nav-link">Join Us</a>
+
+        </ul>
+
+
+    </div>
+</nav>
+
+
+
+
+
+
+<div class="container">
+
+    <div class="card" >
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <img src="http://dailyfreepress.com/wp-content/uploads/2014/09/17_090614-17.jpg" height="324" width="420"/>
+
+                    </div>
+
+                </div>
+                <div class="details col-md-6">
+
+                    <p class="product-title" id="alert-location"></p>
+                    <p class="price"><span><%= event[0].name%></span></p>
+
+                    <p class="product-description">Date: <%= event[0].date%></p>
+
+                    <h5 class="sizes">Time: <%= event[0].time %>
+                        <h3 class="price"><span><%= event[0].description%></span></h3>
+                    </h5>
+
+                    <p><%= event[0].venue%> </p>
+
+                    <div class="comment-date">Contact Initiator: <span class="price"> <%= event[0].email %> </span>
+                    </div>
+                    <div class="comment-date">
+                        Requirement:<br/>
+                        <% for(n = 0; n<event[0].requirement.length; n++){%>
+                        <% if(event[0].requirement[n].number != 0){%>
+                        <%= event[0].requirement[n].expertise_name %>: <%= event[0].requirement[n].number%> <br/>
+                        <%}%>
+                        <%}%>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+        <br>
+
+
+    <% if(flagsearch == "True" && volunteer.length > 0){%>
+    <p>Here are the suggested volunteers found for you:</p>
+    <%} else if(flagsearch == "True" && volunteer.length == 0){%>
+    <p>Sorry, no suggestions found:</p>
+    <%}%>
+
+
+
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+        <tr>
+
+            <th scope="row">#</th>
+            <th >First Name</th>
+            <th >Email Address</th>
+            <th>&nbsp&nbspTake Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <% for(var m=0; m < volunteer.length; m++) { %>
+        <tr>
+            <td scope="row"><%= m+1 %></td>
+            <td><%= volunteer[m].firstName%></td>
+            <td><%= volunteer[m].email %></td>
+            <td><button type="button" class="btn btn-warning">Contact me</button></td>
+        </tr>
+
+        <% } %>
+        </tbody>
+    </table>
+
+
+
+    </div>
+
+
+</body>
+</html>

@@ -44,9 +44,11 @@ router.get('/search', function(req, res, next) {
         ];
         Expertise.find({}, function (err, results) {
 
+
             var expertiseAll = results;
 
             Eventinfo.find({}, function (err, doc) {
+                console.log(doc[0]);
                 res.render('search', {event: doc, trainer: trainers, user: req.user, expertiseAll: expertiseAll, flagsearch:"False"});
 
             });

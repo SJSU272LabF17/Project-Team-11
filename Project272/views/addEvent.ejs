@@ -37,7 +37,7 @@
             padding-top: 60px;
             width: 100%;
             width: 100vw;
-            height: 550px;
+            height: 750px;
             background: #3a6186; /* fallback for old browsers */
             background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -73,14 +73,19 @@
 
         .submit{
             font-size: 1.1em;
-            float: right;
-            width: 150px;
+            float: left;
+            width: 250px;
             background-color: transparent;
             color: #fff;
 
         }
 
     </style>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
 
 </head>
 <body>
@@ -131,33 +136,46 @@
                         <label for="exampleInputUsername">Event Name</label>
                         <input type="text" class="form-control" name="eventname" id="" placeholder=" Enter Event Name">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail">Event date</label>
-                        <input type="text" class="form-control" name="eventdate" placeholder=" Enter Event date">
-                    </div>
+
                     <div class="form-group">
                         <label for="telephone">Event address</label>
                         <input type="text" class="form-control" name="eventaddress" id="telephone" placeholder=" Enter Event Address">
                     </div>
+                    <div class="form-group">
+
+                        <label for="telephone">Expertise Required</label><br/>
+                        <%for(var exnum=0; exnum < expertiseAll.length; exnum ++){%>
+                        <select class="custom-select" name="">
+                            <option selected value="0"><%= expertiseAll[exnum].expertise_name%></option>
+                        </select>
+                        <select class="custom-select" name="number<%=exnum%>">
+                            <option selected>How many volunteers needed</option>
+                            <%for(var n=0; n < 13; n ++){%>
+                            <option value="<%=n%>"><%= n%></option>
+                            <%}%>
+                        </select><br/>
+                        <%}%>
+
+
+
+
+                    </div>
+
+
+
                 </div>
                 <div class="col-6 ">
                     <div class="form-group">
-                        <div class="dropdown">
-                            <label for="telephone">Expertise Required</label><br/>
+                        <label for ="description">Event Date</label>
+                        <input type="text" class="form-control" name="eventdate" id="datepicker">
 
-                            <select class="custom-select" name="expertiseid">
-                                <option selected>Select required Expertise</option>
-                                <%for(var exnum=0; exnum < expertiseAll.length; exnum ++){%>
-                                <option value="<%= expertiseAll[exnum].expertise_name%>"><%= expertiseAll[exnum].expertise_name%></option>
-                                <%}%>
-                            </select>
-                            <select class="custom-select" name="number">
-                                <option selected>How many volunteers you need</option>
-                                <%for(var exnum=0; exnum < 12; exnum ++){%>
-                                <option value="<%=exnum%>"><%= exnum%></option>
-                                <%}%>
-                            </select>
-                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for ="description">Event Time</label>
+                        <input type="text" class="form-control" name="eventtime" id="time" placeholder="eg: 18:00">
+
                     </div>
                     <div class="form-group">
                         <label for ="description"> Description</label>
@@ -165,8 +183,13 @@
                     </div>
                     <div>
 
-                        <button  type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Send Message</button>
+                        <button  type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Submit Event Information</button>
                     </div>
+
+
+
+
+
 
                 </div>
                 </div>
@@ -180,6 +203,18 @@
     <p class="float-left">© 2017 Team 11. ·<a href="#">Privacy</a> ·<a href="#">Terms</a></p>
 </footer>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker8').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+    });
+</script>
 <!-- Bootstrap JavaScript-->
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
