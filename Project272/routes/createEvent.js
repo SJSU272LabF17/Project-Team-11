@@ -13,15 +13,20 @@ var venue;
 var description;
 
 function createEvent(req,res){
+	if(req.isAuthenticated()){
+
 	//retainDetails(req,res);
-	 email=req.body.email;
+	 email=req.user.email;
 	Expertise.find({}, function(err, results){		
 	 expertiseAll=results;	
 	console.log("hitting createEvent"+email);	
 	//res.render('createEvent.ejs',{expertiseAll:expertiseAll, numberInList:numberInList,expertiseReq:expertiseReq});
 	 renderPage(req,res);
 	});
-
+	}
+	else{
+		res.redirect("/login");
+	}
 }
 
 
@@ -70,35 +75,40 @@ function addVolunteerNeed(req,res){
 	
 }
 
-function addEvent(req,res){
-	console.log("adding event");
-	 name=req.body.name;
-	 date=req.body.date;
-	 venue=req.body.venue;
-	 description=req.body.description;
-	 console.log(name+"name",date+"date",venue+"venue")
-	
-	var requirement=expertiseReq;
-	    //email: String,
-	
-	console.log(name+"name","date"+date,
-			"venue"+venue,
-			"description"+description,
-			"email"+email,
-			"requirement"+requirement);
-	
-	var event= new Event();
-	event.name=name;
-	event.date=date;
-	event.venue=venue;
-	event.description=description;
-	event.email=email;
-	event.requirement=requirement;
-	
-	
-	event.save();
-	profile.profile(req,res);
-	
+function addEvent(req,res) {
+    if (req.isAuthenticated()) {
+        console.log("adding event");
+        name = req.body.name;
+        date = req.body.date;
+        venue = req.body.venue;
+        description = req.body.description;
+        console.log(name + "name", date + "date", venue + "venue")
+
+        var requirement = expertiseReq;
+        //email: String,
+
+        console.log(name + "name", "date" + date,
+            "venue" + venue,
+            "description" + description,
+            "email" + email,
+            "requirement" + requirement);
+
+        var event = new Event();
+        event.name = name;
+        event.date = date;
+        event.venue = venue;
+        event.description = description;
+        event.email = email;
+        event.requirement = requirement;
+
+
+        event.save();
+        profile.profile(req, res);
+
+    }
+    else{
+    	res.redirect('/login');
+	}
 }
 
 function retainDetails(req,res){

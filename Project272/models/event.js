@@ -5,6 +5,7 @@ module.exports = mongoose.model('Event',{
     name: String,
     email: String,
     date: String,
+    time: String,
     venue: String,
     description: String,
     requirement:[{

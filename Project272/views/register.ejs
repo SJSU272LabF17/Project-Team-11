@@ -1,6 +1,7 @@
 <head>
     <link rel='stylesheet' href='stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Register new account</title>
 </head>
 <body><div class="container">
     <div class="row">
@@ -15,7 +16,7 @@
                         <input type="text" name="lastName" placeholder="Last Name" required="required" class="form-control"/>
                         <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button><span class="clearfix"></span>
                     </form>
-                </div>
+                </div><a href="/login" class="text-center new-account">Already have an account?</a>
                 <div id="message">
                     <% if (message !== '') { %>
                     <div class="text-center error-message"><%= message %></div>

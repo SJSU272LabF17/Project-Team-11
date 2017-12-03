@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Volunteer for Spartans</title>
+    <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- jQuery ui CSS-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Custom CSS-->
+    <link href="stylesheets/homepage.css" rel="stylesheet">
+    <!-- Autocomplete funciton-->
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        /*Contact sectiom*/
+        .content-header{
+            font-family: 'Oleo Script', cursive;
+            color:#fcc500;
+            font-size: 45px;
+        }
+
+        .section-content{
+            text-align: center;
+
+        }
+        #contact{
+
+            font-family: 'Teko', sans-serif;
+            padding-top: 60px;
+            width: 100%;
+            width: 100vw;
+            height: 750px;
+            background: #3a6186; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            color : #fff;
+        }
+        .contact-section{
+            padding-top: 40px;
+        }
+        .contact-section .col-md-6{
+            width: 50%;
+        }
+
+        .form-line{
+            border-right: 1px solid #B29999;
+        }
+
+        .form-group{
+            margin-top: 10px;
+        }
+        label{
+            font-size: 1.3em;
+            line-height: 1em;
+            font-weight: normal;
+        }
+        .form-control{
+            font-size: 1.3em;
+            color: #080808;
+        }
+        textarea.form-control {
+            height: 135px;
+            /* margin-top: px;*/
+        }
+
+        .submit{
+            font-size: 1.1em;
+            float: left;
+            width: 250px;
+            background-color: transparent;
+            color: #fff;
+
+        }
+
+    </style>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
+
+</head>
+<body>
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
+    <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span class="navbar-toggler-icon"></span></button><a href="/" class="navbar-brand"><img src="https://raptortech.com/wp-content/themes/Raptor_Theme/images/volunteer-coordinator-icon.png" height="30px" width="30px" class="img-fluid"></a>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="search" class="nav-link">Opportunity</a></li>
+            <li class="nav-item"><a href="profile" class="nav-link">Profile</a></li>
+            <li class="nav-item"><a href="createEvent" class="nav-link">Create Event</a></li>
+            <li class="nav-item"><a href="addEvent" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!--
+        <form class="form-inline mt-2 mt-md-0 ui-widget">
+        <input class="form-control mr-sm-2" id="tags" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        -->
+        <ul class="navbar-nav justify-content-end">
+
+            <li class="nav-item"></li><a href="/home" class="nav-link">Join Us</a>
+
+        </ul>
+
+
+    </div>
+</nav>
+
+
+
+
+
+
+
+<section id="contact">
+    <div class="section-content">
+        <h1 class="section-header">Create <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"> Your Own Event</span></h1>
+        <h3>We support and encourage you to contribute your talents to serve others through charitable or volunteer efforts.</h3>
+    </div>
+    <div class="contact-section">
+        <div class="container">
+            <form method="post" action="/addnewEvent">
+                <div class="row">
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <label for="exampleInputUsername">Event Name</label>
+                        <input type="text" class="form-control" name="eventname" id="" placeholder=" Enter Event Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone">Event address</label>
+                        <input type="text" class="form-control" name="eventaddress" id="telephone" placeholder=" Enter Event Address">
+                    </div>
+                    <div class="form-group">
+
+                        <label for="telephone">Expertise Required</label><br/>
+                        <%for(var exnum=0; exnum < expertiseAll.length; exnum ++){%>
+                        <select class="custom-select" name="">
+                            <option selected value="0"><%= expertiseAll[exnum].expertise_name%></option>
+                        </select>
+                        <select class="custom-select" name="number<%=exnum%>">
+                            <option selected>How many volunteers needed</option>
+                            <%for(var n=0; n < 13; n ++){%>
+                            <option value="<%=n%>"><%= n%></option>
+                            <%}%>
+                        </select><br/>
+                        <%}%>
+
+
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <label for ="description">Event Date</label>
+                        <input type="text" class="form-control" name="eventdate" id="datepicker">
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for ="description">Event Time</label>
+                        <input type="text" class="form-control" name="eventtime" id="time" placeholder="eg: 18:00">
+
+                    </div>
+                    <div class="form-group">
+                        <label for ="description"> Description</label>
+                        <textarea  class="form-control" name="description" id="description" placeholder="Enter Your Description"></textarea>
+                    </div>
+                    <div>
+
+                        <button  type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Submit Event Information</button>
+                    </div>
+
+
+
+
+
+
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<div class="container">
+<footer>
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p class="float-left">© 2017 Team 11. ·<a href="#">Privacy</a> ·<a href="#">Terms</a></p>
+</footer>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker8').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+    });
+</script>
+<!-- Bootstrap JavaScript-->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+

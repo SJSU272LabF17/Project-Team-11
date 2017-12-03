@@ -183,7 +183,37 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 -->
 
-<div class="container">
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="https://raptortech.com/wp-content/themes/Raptor_Theme/images/volunteer-coordinator-icon.png"
+                                                          height="30px" width="30px" class="img-fluid"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#">Create Event</a></li>
+
+                        </li>
+                    </ul>
+
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+
+        <div class="container">
     <div class="row profile">
 		
 		<div class="tab-content">
@@ -201,24 +231,43 @@ Licensed under MIT
 </td></tr>
 <tr>
 <td>
-
+    <% if(expertiseReq){%>
   <% for(var i=0; i<expertiseReq.length; i++) {%>
 <tr >
  <form id ="deleteVol" method="post" action="/delete">
 <td >
 <span><%= expertiseReq[i].expertise_name %></span>
- 
+
 </td> 
 <td>
 <span><%= expertiseReq[i].number %></span>
 </td>
 <td>
+
 <a href="#"  onclick="document.getElementById('deleteVol').submit();">Delete</a>
-<input name="deleteExpertise" value ='<%-JSON.stringify(expertiseReq[i])%>' style="visibility:hidden"></input>
-<input name="name" value='<%=name%>' style="visibility:hidden"></input>
-<input name="date" value='<%=date%>'style="visibility:hidden">
-<input name="venue" value='<%=venue%>' style="visibility:hidden">
-<input name="description" value='<%=description%>'  style="visibility:hidden">
+<input name="deleteExpertise" value ='<%-JSON.stringify(expertiseReq[i])%>' style="visibility:hidden">
+    <%}%>
+    <% if(name){%>
+<input name="name" value='<%=name%>' style="visibility:hidden">
+    <%}else{%>
+    <input name="name" value='' style="visibility:hidden">
+    <%}%>
+    <% if(date){%>
+    <input name="date" value='<%=date%>' style="visibility:hidden">
+    <%}else{%>
+    <input name="date" value='' style="visibility:hidden">
+    <%}%>
+    <% if(venue){%>
+    <input name="date" value='<%=venue%>'style="visibility:hidden">
+    <%}else{%>
+    <input name="date" value='' style="visibility:hidden">
+    <%}%>
+    <% if(description){%>
+    <input name="date" value='<%=description%>' style="visibility:hidden">
+    <%}else{%>
+    <input name="date" value='' style="visibility:hidden">
+    <%}%>
+
 </td>
 
   </form>
@@ -263,19 +312,35 @@ Licensed under MIT
 
 <tr><td>
 <span>Event Name</span></td>
-<td><input id="name" name="name" value='<%=name%>' ></input></td>
+<td><% if(name){%>
+    <input id="name"  name="name" value='<%=name%>' >
+    <%}else{%>
+    <input id="name"  name="name" value=''>
+    <%}%></td>
 </tr>
 <tr><td>
 <span>Date</span></td>
-<td><input id="date" name="date" value='<%=date%>'></input></td>
+<td><% if(date){%>
+    <input id="date"  name="date" value='<%=date%>' >
+    <%}else{%>
+    <input id="date"  name="date" value=''>
+    <%}%></td>
 </tr>
 <tr><td>
 <span>Venue</span></td>
-<td><input id="venue" name="venue" value='<%=venue%>'></input></td>
+<td><% if(venue){%>
+    <input id="venue"  name="venue" value='<%=venue%>' >
+    <%}else{%>
+    <input id="venue"  name="venue" value=''>
+    <%}%></td>
 </tr>
 <tr><td>
 <span>Description</span></td>
-<td><input id="description" name="description" value='<%=description%>' ></input></td>
+<td><% if(description){%>
+    <input id="description"  name="description" value='<%=venue%>' >
+    <%}else{%>
+    <input id="description"  name="description" value=''>
+    <%}%></td>
 </tr>
 
 

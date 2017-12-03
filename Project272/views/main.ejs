@@ -8,7 +8,7 @@
     <title>Profile</title>
 
     <!-- Bootstrap -->
-  
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,7 +66,7 @@ padding:0 0 0 15px;
   font-weight: 600;
   margin-bottom: 15px;
 }
- 
+
 .profile-usermenu {
   margin-top: 30px;
   padding:0px !important;
@@ -136,7 +136,7 @@ padding:0 0 0 15px;
     left: 0;
     position: absolute;
     width: 75px;
-}   
+}
 .form {
     border-radius: 7px;
     padding: 6px;
@@ -165,7 +165,7 @@ padding:0 0 0 15px;
     line-height: 35px;
     margin: 10px 0;
     padding: 0;
-    
+
     width: 12%;
 }*/
 .txt2:hover {
@@ -183,16 +183,47 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 -->
 
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/"><img src="https://raptortech.com/wp-content/themes/Raptor_Theme/images/volunteer-coordinator-icon.png"
+														  height="30px" width="30px" class="img-fluid"></a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="/">Home</a></li>
+						<li class="active"><a href="#">Profile</a></li>
+
+						</li>
+					</ul>
+
+
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+
+
+
+
+
+
+
+
 <div class="container">
     <div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					<!-- <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> -->
-                   
-                    
-				</div>
+
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
@@ -206,20 +237,24 @@ Licensed under MIT
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li class="active">
+						<li <% if (flag == "False"){%>
+								class="active"
+								<% }%> >
 							<a href="#Personal"  data-toggle="tab">
 							<i class="glyphicon glyphicon-home"></i>
-							<span class="hidden-xs">Profile<span> </a>
+							<span class="hidden-xs">Profile</span> </a>
 						</li>
-						<li>
+						<li <% if (flag == "True"){%>
+								class="active"
+                                <% }%>>
 							<a href="#Expertise" data-toggle="tab">
 							<i class="glyphicon glyphicon-user"></i>
-							<span class="hidden-xs">My Interests<span> </a>
+							<span class="hidden-xs">My Interests</span> </a>
 						</li>
 						<li>
 							<a href="#Events" data-toggle="tab">
 							<i class="glyphicon glyphicon-ok"></i>
-							<span class="hidden-xs">My Events <span></a>
+							<span class="hidden-xs">My Events </span></a>
 						</li>
 					</ul>
 				</div>
@@ -228,12 +263,12 @@ Licensed under MIT
 		</div>
 		
 		<table>
-		
+
 		<tr><td>
 		<form method="post"action="/createEvent" >
 		<div>
-		<button>Create an event</button>
-		<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+
+
 		</div>
 		</form>
 		</td>
@@ -241,14 +276,14 @@ Licensed under MIT
 		<td>
 		<form method="post"action="/viewOpportunities">
 		<div>
-		<button>View opportunities</button>
-		<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+
+
 		</div>
 		</form>
 		</td>
-		<td><br/><br/><br/></td>
+		<td></td>
 		</tr>
-		
+
 		</table>
 	
 		
@@ -321,7 +356,8 @@ Name
 
 </td>
 <td>
-<button class="btn btn-outline-success">Add</button>
+<button class="btn btn-warning">Add</button>
+
 </td>
 </tr>
  <tr><td><br/></td></tr>
@@ -349,7 +385,7 @@ Name
 
 </td>
 <td>
-<button class="btn btn-outline-success">Add</button>
+<button class="btn btn-warning">Add</button>
 </td>
 </tr>
 
@@ -403,20 +439,7 @@ Name
 	</div>
 	
 	</div>
-	 <script>
-  $(document).ready(function() {
-	    if (location.hash) {
-	        $("a[href='" + location.hash + "']").tab("show");
-	    }
-	    $(document.body).on("click", "a[data-toggle]", function(event) {
-	        location.hash = this.getAttribute("href");
-	    });
-	});
-	$(window).on("popstate", function() {
-	    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-	    $("a[href='" + anchor + "']").tab("show");
-	});
-  </script>
+
 	
 	
 	
