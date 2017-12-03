@@ -133,25 +133,25 @@ function addExpertiseVolunteer(req,res){
 
 function deleteExpertiseVolunteer(req,res){
 	
-	var expertiseToDelete= req.body.delete_volunteer;
+	var expertiseToDelete= req.body.expertise_id;
 	
-	expertiseToDelete = JSON.parse(expertiseToDelete);
+	//expertiseToDelete = JSON.parse(expertiseToDelete);
 
 	
-	console.log(req.body.email);
-	console.log(expertiseToAdd.expertise_id);
+	console.log(req.body.email+"ffff");
+	console.log(expertiseToDelete+"gggg");
 	
 	User.findOneAndUpdate(
-		 //{ email: req.body.email }, 
-		 { email: req.body.email , "volunteer.expertise_id": expertiseToDelete }, 
-		    { $pull: { volunteer: expertiseToAdd } },
+		 { email: req.body.email }, 
+		// {  }, 
+		    { $pull: { volunteer: { expertise_id: expertiseToDelete } }},
 		    //{upsert: true}, 
 		    function(err, doc){
 		        if (err) {console.log(err);}
 		        else {console.log("succesfully deleted");}
 		    });
-	profile(req,res);
-	
+	//profile(req,res);
+	 res.redirect('/profile#Expertise');
 //	<form id ="deleteVol" method="post" action="deleteExpertiseVolunteer">
 //	<td >
 //
@@ -183,6 +183,39 @@ function addExpertiseTrain(req,res){
 	
 }
 
+function deleteExpertiseTrain(req,res){
+	
+	var expertiseToDelete= req.body.expertise_id;
+	
+	//expertiseToDelete = JSON.parse(expertiseToDelete);
+
+	
+	console.log(req.body.email+"ffff");
+	console.log(expertiseToDelete+"gggg");
+	
+	User.findOneAndUpdate(
+		 { email: req.body.email }, 
+		// {  }, 
+		    { $pull: { train : { expertise_id: expertiseToDelete } }},
+		    //{upsert: true}, 
+		    function(err, doc){
+		        if (err) {console.log(err);}
+		        else {console.log("succesfully deleted");}
+		    });
+	//profile(req,res);
+	 res.redirect('/profile#Expertise');
+//	<form id ="deleteVol" method="post" action="deleteExpertiseVolunteer">
+//	<td >
+//
+//	 <a href="#" onclick="document.getElementById('deleteVol').submit();"><%= events[i].name %></a>
+//	</td> </tr>
+//	<input name="delete_volunteer" value="<%= user.volunteer[i].expertise_id %>" style="visibility:hidden"></input>
+//	<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+//	  </form>
+	
+}
+
+
 
 function goToEvent(req,res){
 	//<a href="#" onclick="document.getElementById('event').submit();"><%= events[i].name %></a>
@@ -196,3 +229,5 @@ exports.profile=profile;
 exports.addExpertiseVolunteer=addExpertiseVolunteer;
 exports.addExpertiseTrain=addExpertiseTrain;
 exports.goToEvent =goToEvent;
+exports.deleteExpertiseVolunteer=deleteExpertiseVolunteer;
+exports.deleteExpertiseTrain=deleteExpertiseTrain;
