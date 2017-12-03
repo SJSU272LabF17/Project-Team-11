@@ -51,6 +51,8 @@ app.use('/profile', profile.profile);
 app.use('/addExpertiseVolunteer', profile.addExpertiseVolunteer);
 app.use('/addExpertiseTrain', profile.addExpertiseTrain);
 app.use('/goToEvent', profile.goToEvent);
+app.use('/deleteExpertiseVolunteer', profile.deleteExpertiseVolunteer);
+app.use('/deleteExpertiseTrain', profile.deleteExpertiseTrain);
 
 //app.use('/viewOpportunities', profile.viewOpportunities);
 

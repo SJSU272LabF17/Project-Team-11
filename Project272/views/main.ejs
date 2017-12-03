@@ -331,16 +331,25 @@ Name
 <th>What would you like to volunteer for? <br/><br/></th>
 
 </tr>
+
 <% for(var i=0; i<user.volunteer.length; i++) {%>
+<form method="post" action="/deleteExpertiseVolunteer" >
 <tr >
 <td >
 <span><%= user.volunteer[i].expertise_name %></span>
 </td>
 <td>
+<button class="btn ">Delete</button>
+<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+<input name="expertise_id" value="<%= user.volunteer[i].expertise_id %>" style="visibility:hidden"></input>
+</td>
+<td>
 
 </td>
 </tr>
+</form>
  <% } %>
+
  <tr><td><br/></td></tr>
  
 <form method="post" action="/addExpertiseVolunteer" >
@@ -368,10 +377,26 @@ Name
 
 <th>What can you train volunteers in?<br/><br/></th></tr>
 
+
+
 <% for(var i=0; i<user.train.length; i++) {%>
+<form method="post" action="/deleteExpertiseTrain" >
 <tr >
-<td ><span><%= user.train[i].expertise_name %></span></td> </tr>
-<% } %>
+<td >
+<span><%= user.train[i].expertise_name %></span>
+</td>
+<td>
+<button class="btn ">Delete</button>
+<input name="email" value="<%= user.email %>" style="visibility:hidden"></input>
+<input name="expertise_id" value="<%= user.train[i].expertise_id %>" style="visibility:hidden"></input>
+</td>
+<td>
+
+</td>
+</tr>
+</form>
+ <% } %>
+ 
  <tr><td><br/></td></tr>
 <form method="post" action="/addExpertiseTrain" >
 <tr>
