@@ -8,6 +8,10 @@ module.exports = mongoose.model('User',{
 	firstName: String,
 	lastName: String,
 	volunteer: { type : Array , "default" : [] },
-	 train: { type : Array , "default" : [] } 
+	train: { type : Array , "default" : [] } ,
+	messages: [{
+		content: String,
+		eventid: String
+	}],
 
 });

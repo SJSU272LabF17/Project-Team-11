@@ -253,8 +253,13 @@ Licensed under MIT
 						</li>
 						<li>
 							<a href="#Events" data-toggle="tab">
-							<i class="glyphicon glyphicon-ok"></i>
-							<span class="hidden-xs">My Events </span></a>
+								<i class="glyphicon glyphicon-ok"></i>
+								<span class="hidden-xs">My Events </span></a>
+						</li>
+						<li>
+							<a href="#Messages" data-toggle="tab">
+								<i class="glyphicon glyphicon-ok"></i>
+								<span class="hidden-xs">My Messages </span></a>
 						</li>
 					</ul>
 				</div>
@@ -462,6 +467,37 @@ Name
             
             
 	</div>
+			<div class="col-md-9 order-content tab-pane" id="Messages">
+
+				<table class="table">
+					<thead>
+					<tr>
+
+						<th scope="col">#</th>
+						<th scope="col">Messages</th>
+						<th scope="col">Link</th>
+
+					</tr>
+					</thead>
+					<tbody>
+
+                    <% for(var i=0; i<user.messages.length; i++) {%>
+					<tr>
+						<td><span> #</span></td>
+						<td> <span><%= user.messages[i].content%></span></td>
+						<td><span> <a href="eventdetail/<%= user.messages[i].eventid%>">Link</a> </span></td>
+					</tr>
+                    <%}%>
+
+
+
+					</tr>
+					</tbody>
+				</table>
+
+
+
+			</div>
 	
 	</div>
 

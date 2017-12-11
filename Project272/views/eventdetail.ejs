@@ -191,12 +191,17 @@
         </thead>
         <tbody>
         <% for(var m=0; m < volunteer.length; m++) { %>
+        <form action="/message" method="post">
         <tr>
             <td scope="row"><%= m+1 %></td>
             <td><%= volunteer[m].firstName%></td>
             <td><%= volunteer[m].email %></td>
-            <td><button type="button" class="btn btn-warning">Contact me</button></td>
+            <td><input type="hidden" type="text" name="vol_username" value="<%= volunteer[m].username%>"  />
+                <input type="hidden" type="text" name="eventname" value="<%= event[0].name%>"  />
+                <input type="hidden" type="text" name="eventid" value="<%= event[0].event_id%>"  />
+                <button type="submit" class="btn btn-warning">Contact me</button></td>
         </tr>
+        </form>
 
         <% } %>
         </tbody>

@@ -44,8 +44,27 @@ function profile(req,res){
                 var expertiseAll = results;
                 //console.log(expertiseAll+"expertiseAll");
 
-                Event.find({email: email}, function (err, results) {
-                    events = results;
+                Event.find({}, function (err, results) {
+                	var events = [];
+                	for(var i =0; i< results.length; i++){
+                		if(results[i] === email){
+                			events.push(results[i]);
+						}else{
+                			for(var j =0; j<results[i].volunteer.length; j++){
+                				if(req.user.username === results[i].volunteer[j]){
+                					events.push(results[i]);
+								}
+							}
+
+						}
+					}
+					console.log(events);
+
+
+
+
+
+
 //	var expertiseAll=[
 //       
 //           	{ "expertise_id":1, "expertise_name": "Expertise 1"},

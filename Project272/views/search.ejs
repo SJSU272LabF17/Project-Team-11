@@ -116,7 +116,12 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-7">
                             <h3><a href="eventdetail/<%= event[i].event_id%>" title=""><%= event[i].name%></a></h3>
-                            <p><%= event[i].description%></p><button type="button" class="btn btn-info" style='float: right;'>Count me in</button>
+                            <p><%= event[i].description%></p>
+                            <form action="/volunteer" method="post">
+                                <input type="hidden" type="text" name="eventid" value="<%= event[i].event_id%>"  />
+                                <button type="submit" class="btn btn-info" style='float: right;'>Count me in</button>
+                            </form>
+
 
                         </div>
 

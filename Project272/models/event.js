@@ -13,10 +13,5 @@ module.exports = mongoose.model('Event',{
         expertise_name: String,
         number: Number
     }],
-    volunteer:[{
-        email: String,
-        name: String,
-        expertise_id: String,
-        expertise_name: String
-    }]
+    volunteer:[String]
 });

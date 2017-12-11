@@ -17,6 +17,57 @@ router.get('/display', function(req, res, next) {
         });
 });
 
+router.post('/volunteer', function(req, res, next) {
+    console.log("Welcome to volunteer section!");
+    var id = req.body.eventid;
+    console.log(id);
+
+    Event.find( { "event_id": id }, function(err,doc){
+
+        if(err){
+            console.error(error);
+        }else {
+
+            doc[0].volunteer.push(req.user.username);
+
+            doc[0].save();
+            res.redirect('/');
+        }
+    });
+});
+
+
+router.post('/message', function(req, res, next) {
+    console.log("Welcome to message section!");
+    var user_id = req.body.vol_username;
+    console.log(user_id);
+    var eventid = req.body.eventid;
+    var eventname = req.body.eventname;
+
+
+    // 'hi, divya! Initiator of event event_name thinks you are a great fit! Click here to the event.'
+    var render_message = 'Hi, ' + user_id + '! Initiator of event ' + eventname + ' thinks you are a great fit for the event!';
+    console.log(render_message);
+    var render_data = {
+        content : render_message,
+        eventid: eventid
+    };
+
+    User.find( { "username": user_id }, function(err,doc){
+
+        if(err){
+            console.error(error);
+        }else {
+
+            doc[0].messages.push(render_data);
+
+            doc[0].save();
+            res.redirect('/eventdetail/' + eventid);
+        }
+    });
+});
+
+
 router.get('/addEvent', function(req, res, next) {
     if(req.user) {
         console.log("Welcome to addevent section!");
