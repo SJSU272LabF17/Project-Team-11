@@ -68,6 +68,36 @@ router.post('/message', function(req, res, next) {
 });
 
 
+
+router.post('/trainer-message', function(req, res, next) {
+    console.log("Welcome to trainer-message section!");
+    var user_id = req.body.username;
+    console.log(user_id);
+    var trainee = req.user.username;
+
+    // 'hi, trainer! Trainee wants to get trained by you. Contact him/her if you are available :).'
+    var render_message = 'Hi, ' + user_id + '! ' + trainee + ' wants to get trained by you. Contact him/her if you are available :).';
+    console.log(render_message);
+    var render_data = {
+        content : render_message,
+        eventid: req.user.email
+    };
+
+    User.find( { "username": user_id }, function(err,doc){
+
+        if(err){
+            console.error(error);
+        }else {
+
+            doc[0].messages.push(render_data);
+
+            doc[0].save();
+            res.redirect('/');
+        }
+    });
+});
+
+
 router.get('/addEvent', function(req, res, next) {
     if(req.user) {
         console.log("Welcome to addevent section!");

@@ -193,16 +193,21 @@
                 </thead>
                 <tbody>
                 <% for(var m=0; m < trainer.length; m++) { %>
+                <form action="/trainer-message" method="post">
                 <tr>
                     <td scope="row"><%= m+1 %></td>
                     <td><%= trainer[m].firstName%></td>
                     <td><%= trainer[m].email %></td>
-                    <td><button type="button" class="btn btn-warning">Contact me</button></td>
+                    <td><input type="hidden" type="text" name="username" value="<%= trainer[m].username%>"  />
+                        <input type="hidden" type="text" name="email" value="<%= trainer[m].email%>"  />
+                        <button type="submit" class="btn btn-warning">Contact me</button></td>
                 </tr>
+                </form>
 
                 <% } %>
                 </tbody>
             </table>
+
 
 
 
